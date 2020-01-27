@@ -21,7 +21,7 @@ def encode_documents(documents: list, tokenizer: BertTokenizer, max_input_length
     """
     tokenized_documents = [tokenizer.tokenize(document) for document in documents]
     max_sequences_per_document = math.ceil(max(len(x)/(max_input_length-2) for x in tokenized_documents))
-    #assert max_sequences_per_document <= 20, "Your document is to large, arbitrary size when writing"
+    assert max_sequences_per_document <= 300, "Your document is to large, arbitrary size when writing"
 
     output = torch.zeros(size=(len(documents), max_sequences_per_document, 3, 512), dtype=torch.long)
     document_seq_lengths = [] #number of sequence generated per document
